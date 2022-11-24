@@ -54,7 +54,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       return checkPosts();
-    }, 10000);
+    }, 60000);
     return () => clearInterval(interval);
   }, [currentListLen]);
 
