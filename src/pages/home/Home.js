@@ -105,7 +105,9 @@ const Home = () => {
       {postList.length === 0 && (
         <div className="btn d-flex justify-content-center align-items-center p-2 border-bottom rounded-0">
           <AddCircleOutlineIcon />
-          <h6 className="p-0 m-5">Start following to add to your home feed</h6>
+          <h6 className="p-0 m-5">
+            Post or start following to add to your home feed
+          </h6>
         </div>
       )}
     </div>
