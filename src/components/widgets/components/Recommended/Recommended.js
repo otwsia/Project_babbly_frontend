@@ -34,7 +34,7 @@ const Recommended = () => {
         <div className="px-2 py-0">
           <h5 className="p-0 m-0">Who to follow</h5>
           {suggestions.length === 0 && (
-            <h6 className="py-5">No new recommendations</h6>
+            <h6 className="py-3 text-center">No new recommendations</h6>
           )}
         </div>
         {suggestions.map((suggestion, i) => {
