@@ -37,6 +37,7 @@ const Recommended = () => {
         {suggestions.map((suggestion, i) => {
           return <RecoCard suggestion={suggestion.fields} key={i} />;
         })}
+        {suggestions.length === 0 && <h6>No new recommendations</h6>}
       </div>
     </div>
   );
