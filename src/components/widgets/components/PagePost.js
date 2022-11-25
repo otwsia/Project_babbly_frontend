@@ -41,10 +41,13 @@ const PagePost = (props) => {
     if (postPic) {
       formData.append("image", postPic);
     }
-    const res = await fetch("http://localhost:8000/post/upload/", {
-      method: "PUT",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/post/upload/",
+      {
+        method: "PUT",
+        body: formData,
+      }
+    );
     const fetchedResult = await res.json();
 
     setPost("");
@@ -59,7 +62,7 @@ const PagePost = (props) => {
         <div className="col-1 h-50">
           <div className="ratio ratio-1x1">
             <img
-              src={`http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
+              src={`https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
               alt="profile-pic"
               className="rounded-circle ratio ratio-1x1"
             />

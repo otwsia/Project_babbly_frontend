@@ -48,10 +48,13 @@ const Navbar = () => {
     if (postPic) {
       formData.append("image", postPic);
     }
-    const res = await fetch("http://localhost:8000/post/upload/", {
-      method: "PUT",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/post/upload/",
+      {
+        method: "PUT",
+        body: formData,
+      }
+    );
     const fetchedResult = await res.json();
     setPost("");
     let timestamp = new Date();
@@ -149,7 +152,7 @@ const Navbar = () => {
                     <img
                       src={
                         userCtx.userProfile
-                          ? `http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`
+                          ? `https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`
                           : defaultProfilePic
                       }
                       alt="profile-pic"
@@ -201,7 +204,7 @@ const Navbar = () => {
             <div className="w-25 jumbotron">
               <div className="w-75 ratio ratio-1x1">
                 <img
-                  src={`http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
+                  src={`https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
                   alt="profile-pic"
                   className="img-fluid rounded-circle ratio ratio-1x1"
                 />

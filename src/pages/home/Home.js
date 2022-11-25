@@ -13,13 +13,16 @@ const Home = () => {
 
   const getPosts = async () => {
     try {
-      const res = await fetch("http://localhost:8000/post/list/", {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          user: userCtx.userProfile.serialized_profile.fields.handle,
-        }),
-      });
+      const res = await fetch(
+        "https://projectbabblybackend-production.up.railway.app/post/list/",
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            user: userCtx.userProfile.serialized_profile.fields.handle,
+          }),
+        }
+      );
       const fetchedPostData = await res.json();
       setPostList(fetchedPostData);
       setCurrentListLen(fetchedPostData.length);
@@ -31,13 +34,16 @@ const Home = () => {
 
   const checkPosts = async () => {
     try {
-      const res = await fetch("http://localhost:8000/post/list/", {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          user: userCtx.userProfile.serialized_profile.fields.handle,
-        }),
-      });
+      const res = await fetch(
+        "https://projectbabblybackend-production.up.railway.app/post/list/",
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            user: userCtx.userProfile.serialized_profile.fields.handle,
+          }),
+        }
+      );
       const fetchedPostData = await res.json();
       setListDiff(fetchedPostData.length - currentListLen);
 

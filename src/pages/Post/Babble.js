@@ -17,7 +17,7 @@ const Babble = () => {
 
   const getReplies = async () => {
     const res = await fetch(
-      `http://localhost:8000/post/reply/list/${userCtx.babble.pk}/`,
+      `https://projectbabblybackend-production.up.railway.app/post/reply/list/${userCtx.babble.pk}/`,
       {
         method: "GET",
         headers: { "content-type": "application/json" },

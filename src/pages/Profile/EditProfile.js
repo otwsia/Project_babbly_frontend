@@ -89,13 +89,16 @@ const EditProfile = () => {
       formData.append("banner_img", bannerPic);
     }
 
-    const res = await fetch("http://localhost:8000/api/profile_update/", {
-      method: "PATCH",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/profile_update/",
+      {
+        method: "PATCH",
+        body: formData,
+      }
+    );
     const fetchedPatchResult = await res.json();
     const res2 = await fetch(
-      `http://localhost:8000/api/profile/${userCtx.userProfile.serialized_profile.fields.handle}/`,
+      `https://projectbabblybackend-production.up.railway.app/api/profile/${userCtx.userProfile.serialized_profile.fields.handle}/`,
       {
         method: "PUT",
         headers: { "content-type": "application/json" },

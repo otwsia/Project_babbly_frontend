@@ -37,19 +37,22 @@ const ViewedProfile = () => {
 
   let history = useHistory();
   const handleFollow = async (e) => {
-    const res = await fetch("http://localhost:8000/api/follow/", {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        follower: userCtx.userProfile.serialized_profile.fields.handle,
-        user: userCtx.viewedProfile.serialized_profile.fields.handle,
-      }),
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/follow/",
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          follower: userCtx.userProfile.serialized_profile.fields.handle,
+          user: userCtx.viewedProfile.serialized_profile.fields.handle,
+        }),
+      }
+    );
     const fetchedResult = await res.json();
     let now = new Date();
     userCtx.setBabbleRefresh("Follow " + now.toTimeString());
     const res2 = await fetch(
-      `http://localhost:8000/api/profile/${userCtx.viewedProfile.serialized_profile.fields.handle}/`,
+      `https://projectbabblybackend-production.up.railway.app/api/profile/${userCtx.viewedProfile.serialized_profile.fields.handle}/`,
       {
         method: "PUT",
         headers: { "content-type": "application/json" },
@@ -73,13 +76,13 @@ const ViewedProfile = () => {
         <div
           className="w-100 h-25 d-flex align-items-center justify-content-between jumbotron"
           style={{
-            backgroundImage: `url(${`http://localhost:8000/media/${userCtx.viewedProfile.serialized_profile.fields.banner_img}`})`,
+            backgroundImage: `url(${`https://projectbabblybackend-production.up.railway.app/media/${userCtx.viewedProfile.serialized_profile.fields.banner_img}`})`,
           }}
         >
           <div className="w-25 h-100 p-2 d-flex align-items-start">
             <div className="ratio ratio-1x1">
               <img
-                src={`http://localhost:8000/media/${userCtx.viewedProfile.serialized_profile.fields.profile_img}`}
+                src={`https://projectbabblybackend-production.up.railway.app/media/${userCtx.viewedProfile.serialized_profile.fields.profile_img}`}
                 alt="profile-pic"
                 className="img-fluid img-thumbnail rounded-circle border-0 mx-2"
               />

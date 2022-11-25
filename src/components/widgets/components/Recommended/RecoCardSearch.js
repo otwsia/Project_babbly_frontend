@@ -17,13 +17,16 @@ const RecoCardSearch = (props) => {
       history.push("/Profile");
       return "Navigated to profile page";
     } else {
-      const res = await fetch(`http://localhost:8000/api/profile/${handle}/`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          user: userCtx.userProfile.serialized_profile.fields.handle,
-        }),
-      });
+      const res = await fetch(
+        `https://projectbabblybackend-production.up.railway.app/api/profile/${handle}/`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            user: userCtx.userProfile.serialized_profile.fields.handle,
+          }),
+        }
+      );
       const fetchedProfile = await res.json();
       userCtx.setViewedProfile(fetchedProfile);
       history.push("/Viewed_Profile");
@@ -31,14 +34,17 @@ const RecoCardSearch = (props) => {
     }
   };
   const handleFollow = async (e) => {
-    const res = await fetch("http://localhost:8000/api/follow/", {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        follower: userCtx.userProfile.serialized_profile.fields.handle,
-        user: props.suggestion.handle,
-      }),
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/follow/",
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          follower: userCtx.userProfile.serialized_profile.fields.handle,
+          user: props.suggestion.handle,
+        }),
+      }
+    );
     const fetchedResult = await res.json();
     if (following === "Follow") {
       setFollowing("Unfollow");
@@ -54,7 +60,7 @@ const RecoCardSearch = (props) => {
       <div className="col-1 jumbotron">
         <div className="ratio ratio-1x1">
           <img
-            src={`http://localhost:8000/media/${props.suggestion.profile_img}`}
+            src={`https://projectbabblybackend-production.up.railway.app/media/${props.suggestion.profile_img}`}
             alt="profile-pic"
             className="img-fluid rounded-circle ratio ratio-1x1"
             id={props.suggestion.handle}

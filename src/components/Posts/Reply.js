@@ -85,7 +85,7 @@ const Reply = (props) => {
       formData.append("image", postPic);
     }
     const res = await fetch(
-      `http://localhost:8000/post/reply/upload/${id_post}/`,
+      `https://projectbabblybackend-production.up.railway.app/post/reply/upload/${id_post}/`,
       {
         method: "PUT",
         body: formData,
@@ -98,15 +98,18 @@ const Reply = (props) => {
   };
 
   const handleRepost = async () => {
-    const res = await fetch(`http://localhost:8000/post/repost/`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        handle: userCtx.userProfile.serialized_profile.fields.handle,
-        name: userCtx.userProfile.serialized_profile.fields.name,
-        post_id: id_post,
-      }),
-    });
+    const res = await fetch(
+      `https://projectbabblybackend-production.up.railway.app/post/repost/`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          handle: userCtx.userProfile.serialized_profile.fields.handle,
+          name: userCtx.userProfile.serialized_profile.fields.name,
+          post_id: id_post,
+        }),
+      }
+    );
     const fetchedResult = await res.json();
     if (fetchedResult === "Reposted") {
       props.post.no_of_reposts++;
@@ -120,14 +123,17 @@ const Reply = (props) => {
   };
 
   const handleLike = async () => {
-    const res = await fetch(`http://localhost:8000/post/like/`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        handle: userCtx.userProfile.serialized_profile.fields.handle,
-        post_id: id_post,
-      }),
-    });
+    const res = await fetch(
+      `https://projectbabblybackend-production.up.railway.app/post/like/`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          handle: userCtx.userProfile.serialized_profile.fields.handle,
+          post_id: id_post,
+        }),
+      }
+    );
     const fetchedResult = await res.json();
     if (fetchedResult === "Liked") {
       props.post.no_of_likes++;
@@ -146,13 +152,16 @@ const Reply = (props) => {
       history.push("/Profile");
       return "Navigated to profile page";
     } else {
-      const res = await fetch(`http://localhost:8000/api/profile/${handle}/`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          user: userCtx.userProfile.serialized_profile.fields.handle,
-        }),
-      });
+      const res = await fetch(
+        `https://projectbabblybackend-production.up.railway.app/api/profile/${handle}/`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            user: userCtx.userProfile.serialized_profile.fields.handle,
+          }),
+        }
+      );
       const fetchedProfile = await res.json();
       userCtx.setViewedProfile(fetchedProfile);
       history.push("/Viewed_Profile");
@@ -161,13 +170,16 @@ const Reply = (props) => {
   };
 
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:8000/post/reply/delete/`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        id: id_post,
-      }),
-    });
+    const res = await fetch(
+      `https://projectbabblybackend-production.up.railway.app/post/reply/delete/`,
+      {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          id: id_post,
+        }),
+      }
+    );
     const fetchedResult = await res.json();
     props.setPostRefresh("deleted " + id_post);
     return fetchedResult;
@@ -182,7 +194,7 @@ const Reply = (props) => {
         <div className="col-1">
           <div className="ratio ratio-1x1">
             <img
-              src={`http://localhost:8000/media/${props.post.profile_img}`}
+              src={`https://projectbabblybackend-production.up.railway.app/media/${props.post.profile_img}`}
               alt="profile-pic"
               className="img-fluid rounded-circle"
               onClick={handleViewedProfile}
@@ -240,7 +252,7 @@ const Reply = (props) => {
 
           {props.post.image && (
             <img
-              src={`http://localhost:8000/media/${props.post.image}`}
+              src={`https://projectbabblybackend-production.up.railway.app/media/${props.post.image}`}
               alt="profile-pic"
               className="img-fluid w-100 border rounded-3 mx-1"
               id={props.post.user}
@@ -316,7 +328,7 @@ const Reply = (props) => {
               <div className="row gx-1 w-100">
                 <div className="col-1">
                   <img
-                    src={`http://localhost:8000/media/${props.post.profile_img}`}
+                    src={`https://projectbabblybackend-production.up.railway.app/media/${props.post.profile_img}`}
                     alt="profile-pic"
                     className="img-fluid rounded-circle"
                     onClick={handleViewedProfile}
@@ -384,7 +396,7 @@ const Reply = (props) => {
                 <div className="col-1">
                   <div className="ratio ratio-1x1">
                     <img
-                      src={`http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
+                      src={`https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
                       alt="profile-pic"
                       className="img-fluid rounded-circle"
                       id={props.post.user}

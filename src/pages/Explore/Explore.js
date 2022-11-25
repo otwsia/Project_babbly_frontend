@@ -13,11 +13,14 @@ const Explore = () => {
 
   const getPosts = async () => {
     try {
-      const res = await fetch("http://localhost:8000/post/list/", {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ user: "None" }),
-      });
+      const res = await fetch(
+        "https://projectbabblybackend-production.up.railway.app/post/list/",
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ user: "None" }),
+        }
+      );
       const fetchedPostData = await res.json();
       setPostList(fetchedPostData);
       setCurrentListLen(fetchedPostData.length);
@@ -29,11 +32,14 @@ const Explore = () => {
 
   const checkPosts = async () => {
     try {
-      const res = await fetch("http://localhost:8000/post/list/", {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ user: "None" }),
-      });
+      const res = await fetch(
+        "https://projectbabblybackend-production.up.railway.app/post/list/",
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ user: "None" }),
+        }
+      );
       const fetchedPostData = await res.json();
       setListDiff(fetchedPostData.length - currentListLen);
 

@@ -21,14 +21,17 @@ const Login = () => {
       return alert("Missing inputs");
     }
     try {
-      const res = await fetch("http://localhost:8000/jwt-api/login/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      const res = await fetch(
+        "https://projectbabblybackend-production.up.railway.app/jwt-api/login/",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
       const fetchedLogin = await res.json();
       if (!fetchedLogin["access"]) {
         return alert("Incorrect login details");
@@ -36,20 +39,23 @@ const Login = () => {
     } catch (err) {
       return alert("Incorrect login details");
     }
-    const res2 = await fetch("http://localhost:8000/api/get-user/", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        name: null,
-        handle: null,
-      }),
-    });
+    const res2 = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/get-user/",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          name: null,
+          handle: null,
+        }),
+      }
+    );
     const fetchedUserData = await res2.json();
     const userHandle = fetchedUserData[0]["fields"]["handle"];
 
     const res3 = await fetch(
-      `http://localhost:8000/api/profile/${userHandle}/`,
+      `https://projectbabblybackend-production.up.railway.app/api/profile/${userHandle}/`,
       {
         method: "PUT",
         headers: { "content-type": "application/json" },
@@ -60,7 +66,7 @@ const Login = () => {
     );
     const fetchedProfileData = await res3.json();
     userCtx.setUserProfile(fetchedProfileData);
-    
+
     history.push("/");
     return fetchedProfileData;
   };

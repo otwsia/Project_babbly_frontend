@@ -10,13 +10,16 @@ const DeleteProfile = () => {
   let history = useHistory();
 
   const handleDeleteAcc = async () => {
-    const res = await fetch("http://localhost:8000/api/profile_delete/", {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        id: `${userCtx.userProfile.serialized_profile.fields.user}`,
-      }),
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/profile_delete/",
+      {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          id: `${userCtx.userProfile.serialized_profile.fields.user}`,
+        }),
+      }
+    );
     const fetchedPostData = await res.json();
     userCtx.setUserProfile(null);
     history.push("/");

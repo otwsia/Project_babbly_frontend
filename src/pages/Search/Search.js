@@ -17,7 +17,7 @@ const Search = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:8000/api/search/${userCtx.userProfile.serialized_profile.fields.handle}/${userCtx.search}/`,
+        `https://projectbabblybackend-production.up.railway.app/api/search/${userCtx.userProfile.serialized_profile.fields.handle}/${userCtx.search}/`,
         {
           method: "GET",
           headers: { "content-type": "application/json" },

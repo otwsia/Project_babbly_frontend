@@ -7,13 +7,16 @@ const Recommended = () => {
   const [suggestions, setSuggestions] = useState([]);
 
   const getSuggestions = async () => {
-    const res = await fetch("http://localhost:8000/api/suggestions/", {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        user: userCtx.userProfile.serialized_profile.fields.handle,
-      }),
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/suggestions/",
+      {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          user: userCtx.userProfile.serialized_profile.fields.handle,
+        }),
+      }
+    );
     const fetchedPostData = await res.json();
     setSuggestions(
       fetchedPostData.slice(0, Math.min(5, fetchedPostData.length))

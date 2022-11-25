@@ -17,7 +17,7 @@ const Profile = () => {
 
   const refreshProfileData = async () => {
     const res = await fetch(
-      `http://localhost:8000/api/profile/${userCtx.userProfile.serialized_profile.fields.handle}/`,
+      `https://projectbabblybackend-production.up.railway.app/api/profile/${userCtx.userProfile.serialized_profile.fields.handle}/`,
       {
         method: "PUT",
         headers: { "content-type": "application/json" },
@@ -63,14 +63,14 @@ const Profile = () => {
         <div
           className="w-100 h-25 d-flex align-items-center justify-content-between bg-image jumbotron"
           style={{
-            backgroundImage: `url(${`http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.banner_img}`})`,
+            backgroundImage: `url(${`https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.banner_img}`})`,
           }}
         >
           <div className="w-75 p-3">
             <div className="w-25 d-flex align-items-start">
               <div className=" ratio ratio-1x1">
                 <img
-                  src={`http://localhost:8000/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
+                  src={`https://projectbabblybackend-production.up.railway.app/media/${userCtx.userProfile.serialized_profile.fields.profile_img}`}
                   alt="profile-pic"
                   className="img-fluid img-thumbnail rounded-circle border-0 mx-2 ratio ratio-1x1"
                 />

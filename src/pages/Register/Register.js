@@ -39,15 +39,18 @@ const Register = () => {
     } else if (handle.length > 15) {
       return alert("Handle cannot be more than 15 characters");
     }
-    const result = await fetch("http://localhost:8000/api/get-user/", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        handle: handle,
-        name: username,
-      }),
-    });
+    const result = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/get-user/",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          handle: handle,
+          name: username,
+        }),
+      }
+    );
     const currentUser = await result.json();
     for (let items of currentUser) {
       if (items["fields"]["email"] === email) {
@@ -58,16 +61,19 @@ const Register = () => {
         return alert("Username already in use");
       }
     }
-    const res = await fetch("http://localhost:8000/api/register/", {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        handle: handle,
-        password: password1,
-        name: username,
-      }),
-    });
+    const res = await fetch(
+      "https://projectbabblybackend-production.up.railway.app/api/register/",
+      {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          handle: handle,
+          password: password1,
+          name: username,
+        }),
+      }
+    );
     const registeredUser = await res.json();
     history.push("/Successful_Registration");
     return registeredUser;
